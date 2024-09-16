@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h2>Bad style</h2>
+<script>
+  function pow(x, n) {
+    let result = 1;
+    for (let i = 0; i < n; i++) {
+      result *= x;
+    }
+    return result;
+  }
+
+  let x = prompt("x?", '');
+  let n = prompt("n?", '')
+
+  if (n <= 0) {
+    alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
+  } else {
+    alert(pow(x, n))
+  }
+</script>
+
+<h2>What's wrong with the test</h2>
+<script>
+  describe("Raises x to power n", () => {
+    let x = 5;
+
+    it("5 in the power of 1 equals 5", () => {
+      assert.equal(pow(x, 1), result);
+    });
+
+    it("5 in the power of 2 equals 25", () => {
+      assert.equal(pow(x, 2), result);
+    });
+
+    it("5 in the power of 3 equals 125", () => {
+      assert.equal(pow(x, 3), result);
+    });
+  })
+</script>
+</body>
+</html>

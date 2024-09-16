@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h2>Can I add a string property?</h2>
+<pre>
+  let str = "Hello";
+  str.test = 5;
+
+  alert(str.test);    // Undefined will be shown, property of primitive will lost
+</pre>
+
+<h2>Sum numbers from the visitor</h2>
+<script>
+  let a = +prompt("Enter first number?", "");
+  let b = +prompt("Enter second number?", "");
+
+  alert(a + b);
+</script>
+
+<h2>Why 6.35.toFixed(1) == 6.3?</h2>
+<script>
+  // the result 6.35.toFixed(1) == 6.3 is caused by inaccuracies in the floating point representation.
+  // (6.35 * 10).toFixed(0) / 10; // 6.4
+  // alert( Math.round(6.35 * 10) / 10 ); // 6.4
+</script>
+
+<h2>Repeat until the input is a number</h2>
+<script>
+  function readNumber() {
+    let number;
+
+    do {
+      number = +prompt("Enter a number:");
+    } while (!isFinite(number));
+
+    if (!number) return null;
+    return number;
+  }
+</script>
+
+<h2>An occasional infinite loop</h2>
+<pre>
+  let i = 0;
+  while (i != 10) {
+    i += 0.2;
+  }
+
+  This. loop is infinite. It happens because precision loses when adding fractions.
+</pre>
+
+<h2>A random number from min to max</h2>
+<script>
+  function random(min, max) {
+    return min + Math.random() * (max - min);
+  }
+</script>
+
+<h2>A random integer from min to max</h2>
+<script>
+  function randomInteger(min, max) {
+    return Math.round(min - 0.5 + Math.random() * (max - min + 1));
+  }
+</script>
+
+<h2>Uppercase the first character</h2>
+<script>
+  function usFirst(str) {
+    if (!str) return;
+    return str[0].toUpperCase() + str.slice(1);
+  }
+</script>
+
+<h2>Check for spam</h2>
+<script>
+  function checkSpam(str) {
+    const lowerStr = str.toLowerCase();
+
+    return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+  }
+</script>
+
+<h2>Truncate the text</h2>
+<script>
+  function truncate(str, maxlength) {
+    return (str.length > maxlength) ?
+      str.slice(0, maxlength - 1) + '…' : str;
+  }
+</script>
+
+<h2>Extract the money</h2>
+<script>
+  function extractCurrencyValue(str) {
+    return +str.slice(1);
+  }
+</script>
+</body>
+</html>

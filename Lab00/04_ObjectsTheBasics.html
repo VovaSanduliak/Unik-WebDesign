@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>Hello, object</h2>
+<script>
+  const user = {};
+
+  user.name = "John";
+  user.surname = "Smith";
+
+  user.name = "Pete";
+  delete user.name;
+</script>
+
+<h2>Check for emptiness</h2>
+<script>
+  const isEmpty = (obj) =>{
+    for (let key in obj) {
+      return false;
+    }
+
+    return true;
+  }
+
+  let schedule = {};
+
+  alert( isEmpty(schedule) ); // true
+
+  schedule["8:30"] = "get up";
+
+  alert( isEmpty(schedule) ); // false
+</script>
+
+<h2>Sum object properties</h2>
+<script>
+  const getSum = (obj) => {
+    let sum = 0;
+    for (let key in obj) {
+      result += obj[key];
+    }
+
+    return sum;
+  }
+</script>
+
+<h2>Multiply numeric property values by 2</h2>
+<script>
+  const multiplyNumeric = (obj) => {
+    for (let key in obj) {
+      if (typeof obj[key] === "number") {
+        obj[key] *= 2;
+      }
+    }
+  }
+</script>
+
+<h2>Using "this" in object literal</h2>
+<pre>
+  Here the function makeUser returns an object.
+  What is the result of accessing its ref? Why?
+
+  function makeUser() {
+    return {
+      name: "John",
+      ref: this
+    };
+  }
+
+  let user = makeUser();
+
+  alert( user.ref.name ); // What's the result?
+
+  Answer: an error
+</pre>
+
+<h2>Create a calculator</h2>
+<script>
+  const calculator = {
+    a: 0,
+    b: 0,
+
+    read() {
+      this.a = +prompt("Enter a:") || 0;
+      this.b = +prompt("Enter b:") || 0;
+    },
+
+    sum() {
+      return this.a + this.b;
+    },
+
+    mul() {
+      return this.a * this.b;
+    }
+  }
+
+  calculator.read();
+  alert( calculator.sum() );
+  alert( calculator.mul() );
+</script>
+
+<h2>Chaining</h2>
+<script>
+  let ladder = {
+    step: 0,
+    up() {
+      return this.step++;
+    },
+    down() {
+      return this.step--;
+    },
+    showStep: function() { // shows the current step
+      alert( this.step );
+      return this
+    }
+  };
+
+  ladder.up().up().down().showStep().down().showStep();
+</script>
+
+<h2>Two functions - one object</h2>
+<script>
+  const obj = {};
+
+  function A() {
+    return obj;
+  }
+
+  function B() {
+    return obj;
+  }
+
+  alert(new A() === new B() );
+</script>
+
+<h2>Create new calculator</h2>
+<script>
+  function Calculator() {
+    this.read = function () {
+      this.a = +prompt("Enter a:", 0);
+      this.b = +prompt("Enter b:", 0);
+    }
+
+    this.sum = function () {
+      return this.a + this.b
+    }
+
+    this.mul = function () {
+      return this.a * this.b;
+    }
+  }
+
+  const calculator = new Calculator();
+  calculator.read();
+  alert(calculator.sum());
+  alert(calculator.mul());
+</script>
+
+<h2>Create new Accumulator</h2>
+<script>
+  function Accumulator(startingValue) {
+    this.value = +startingValue;
+
+    this.read = function () {
+      this.value += +prompt("Enter a number:", 0);
+    }
+  }
+
+  const accumulator = new Accumulator(5);
+  accumulator.read();
+  alert(accumulator.value);
+</script>
+</body>
+</html>
